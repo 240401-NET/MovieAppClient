@@ -1,4 +1,4 @@
-# Movie App Propoposal
+# Movie App Front End
 
 ## Overview
 
