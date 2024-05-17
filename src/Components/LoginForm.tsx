@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../Pages/AuthenticationPage.css";
 
 interface LoginFormState {
   username: string;
@@ -17,7 +18,7 @@ export const LoginForm: React.FC = () => {
   //might need to add useAuth() here
 
   return (
-    <div>
+    <div className="Login">
       <h1>Login</h1>
       <form>
         <div>
@@ -37,7 +38,9 @@ export const LoginForm: React.FC = () => {
             onChange={(e) => setState({ ...state, password: e.target.value })}
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="btn btn-primary w-50" type="submit">
+          Login
+        </button>
       </form>
     </div>
   );

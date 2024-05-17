@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { LoginForm } from "../Components/LoginForm";
 import { SignUpForm } from "../Components/SignUpForm";
+import "./AuthenticationPage.css";
 
 interface AuthenticationPageProps {
   initialMode: "login" | "signup";
@@ -24,14 +25,16 @@ export const AuthenticationPage: React.FC<AuthenticationPageProps> = ({
   };
 
   return (
-    <div>
-      {/* <h1>{mode === "login" ? "Login" : "Sign Up"}</h1> */}
-      {mode === "login" ? <LoginForm /> : <SignUpForm />}
-      <p onClick={toggleMode} style={{ textAlign: "center" }}>
-        {mode === "login"
-          ? "Don't have an account? Sign up here."
-          : "Already have an account? Login here."}
-      </p>
+    <div className="container">
+      <div className="auth_container">
+        {/* <h1>{mode === "login" ? "Login" : "Sign Up"}</h1> */}
+        {mode === "login" ? <LoginForm /> : <SignUpForm />}
+        <p onClick={toggleMode} style={{ textAlign: "center" }}>
+          {mode === "login"
+            ? "Don't have an account? Sign up here."
+            : "Already have an account? Login here."}
+        </p>
+      </div>
     </div>
   );
 };

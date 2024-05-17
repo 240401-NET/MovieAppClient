@@ -3,11 +3,16 @@
 import "./App.css";
 import { AuthenticationPage } from "./Pages/AuthenticationPage";
 import LandingPage from "./Pages/LandingPage";
-import { BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 function App() {
   return (
-    <div className="app">
+    <div className="App">
       <Router>
         <Routes>
           <Route

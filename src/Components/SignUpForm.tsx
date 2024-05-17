@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../Pages/AuthenticationPage.css";
 
 interface SignupFormState {
   username: string;
@@ -17,7 +18,7 @@ export const SignUpForm: React.FC = () => {
   });
 
   return (
-    <div>
+    <div className="Signup">
       <h1>Sign Up</h1>
       <form>
         <div>
@@ -45,7 +46,9 @@ export const SignUpForm: React.FC = () => {
             onChange={(e) => setState({ ...state, password: e.target.value })}
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <button className="btn btn-primary w-50" type="submit">
+          Sign Up
+        </button>
       </form>
     </div>
   );
