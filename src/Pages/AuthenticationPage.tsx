@@ -25,14 +25,22 @@ export const AuthenticationPage: React.FC<AuthenticationPageProps> = ({
   };
 
   return (
-    <div className="container">
+    <div className="container-fluid">
       <div className="auth_container">
         {/* <h1>{mode === "login" ? "Login" : "Sign Up"}</h1> */}
         {mode === "login" ? <LoginForm /> : <SignUpForm />}
-        <p onClick={toggleMode} style={{ textAlign: "center" }}>
-          {mode === "login"
-            ? "Don't have an account? Sign up here."
-            : "Already have an account? Login here."}
+        <p onClick={toggleMode} className="text-center cursor-pointer">
+          {mode === "login" ? (
+            <>
+              Don't have an account?{" "}
+              <span className="text-primary">Sign up here.</span>
+            </>
+          ) : (
+            <>
+              Already have an account?{" "}
+              <span className="text-primary">Login here.</span>
+            </>
+          )}
         </p>
       </div>
     </div>
