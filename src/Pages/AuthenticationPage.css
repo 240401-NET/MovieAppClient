@@ -7,7 +7,7 @@
 } */
 .Login .btn,
 .Signup .btn {
-  background: #885df1;
+  background: #f178b6;
   font-weight: 700;
   padding: 15px 0;
   cursor: pointer;
@@ -16,9 +16,32 @@
   height: 50px;
   margin: 20px;
 }
-.auth_container {
+.container-fluid {
+  width: 900px;
+  margin-top: 65px;
   background-color: #ffffff;
-  height: 350px;
-  width: 200px;
-  padding: auto;
+  padding: 30px;
+  /* border: 3px solid #875df180; */
+  border-radius: 16px;
+  box-shadow: 0 30px 50px rgb(65 50 100 / 8%);
+}
+.auth_container {
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+}
+.cursor-pointer {
+  cursor: pointer;
+  font-size: larger;
+}
+
+.auth_container h1 {
+  font-size: 3rem;
+  color: #885df1;
+  margin-bottom: 20px;
+}
+.auth_container input {
+  background-color: #f9f7fe;
+  border-radius: 13px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.068);
 }
