@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../Pages/AuthenticationPage.css";
+import { UserLogin } from "../services/UserServices";
 
 interface LoginFormState {
   username: string;
@@ -15,18 +16,23 @@ export const LoginForm: React.FC = () => {
     password: "",
   });
 
-  //might need to add useAuth() here
+  const handleLoginSubmit = (event: { preventDefault: () => void }) => {
+    event.preventDefault();
+    UserLogin(state.username, state.password);
+  };
 
   return (
     <div className="Login">
       <h1>Login</h1>
-      <form>
+      <form onSubmit={handleLoginSubmit}>
         <div>
           <label htmlFor="username">Username</label>
           <input
             type="text"
+            id="username"
             value={state.username}
             onChange={(e) => setState({ ...state, username: e.target.value })}
+            className="form-control rounded"
           />
         </div>
         <div>
@@ -36,6 +42,7 @@ export const LoginForm: React.FC = () => {
             id="password"
             value={state.password}
             onChange={(e) => setState({ ...state, password: e.target.value })}
+            className="form-control rounded"
           />
         </div>
         <button className="btn btn-primary w-50" type="submit">

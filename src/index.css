@@ -28,6 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #f9f7fe;
+  color: #0000007e;
 }
 
 h1 {
