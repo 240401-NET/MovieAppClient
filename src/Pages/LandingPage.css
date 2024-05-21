@@ -1,0 +1,34 @@
+#root {
+    max-width: 100vw;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+}
+
+.App {
+    margin: 0;
+    max-width: 100vw;
+    height: 100vh;
+}
+.form-container{
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    width: 100vw;
+
+    .form-search-component {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        background-color: blue;
+
+        .searchedValue-Label {
+            display: none;
+        }
+    }
+
+    .form-parameters-component {
+        background-color: orange;
+    }
+}
