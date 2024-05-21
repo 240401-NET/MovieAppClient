@@ -61,10 +61,8 @@ export const AuthenticationProvider = ({ children }: Props) => {
   ) => {
     await UserRegistration(name, username, email, password)
       .then((res) => {
-        console.log("RES", res);
         if (res) {
           // else, do something else--change as necessary
-          console.log("Registration successful from context");
           navigate("/login");
         }
       })
