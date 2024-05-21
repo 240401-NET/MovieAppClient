@@ -79,6 +79,7 @@ export const UserRegistration = (
       .then((response) => {
         if (response.ok) {
           console.log("registration successful");
+          
           return response;
         }
       })

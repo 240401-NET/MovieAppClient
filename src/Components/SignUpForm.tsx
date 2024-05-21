@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { UserRegistration } from "../services/UserServices";
 import "../Pages/AuthenticationPage.css";
+import { useAuthentication } from "../contexts/AuthenticationContext";
 
 interface SignupFormState {
   name: string;
@@ -19,10 +19,11 @@ export const SignUpForm: React.FC = () => {
     email: "",
     password: "",
   });
+  const { registerUser } = useAuthentication();
 
   const handleSignupSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    UserRegistration(state.name, state.username, state.email, state.password);
+    registerUser(state.name, state.username, state.email, state.password);
   };
 
   return (
