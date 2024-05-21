@@ -7,13 +7,12 @@ import { UpcomingCarousel } from "./Upcoming";
 const LandingPageDashboard = () => {
     return (
         <>
-        <div className="landingPage-container">  
-            <MovieSearch></MovieSearch>
-            <NowPlayingCarousel></NowPlayingCarousel>
-            <UpcomingCarousel></UpcomingCarousel>
-            <FavoritesCarousel></FavoritesCarousel>
-        </div>
-
+            <div className="landingPage-container">  
+                <MovieSearch></MovieSearch>
+                <NowPlayingCarousel></NowPlayingCarousel>
+                <UpcomingCarousel></UpcomingCarousel>
+                <FavoritesCarousel></FavoritesCarousel>
+            </div>
         </>
     )
 }
