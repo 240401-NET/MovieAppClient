@@ -11,24 +11,58 @@
     max-width: 100vw;
     height: 100vh;
 }
-.form-container{
+
+.landingPage-container {
     display: flex;
     flex-direction: column;
-    background-color: yellow;
+    flex-wrap: nowrap;
     width: 100vw;
-
-    .form-search-component {
+    .form-container{
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        background-color: blue;
+        flex-direction: column;
+        background-color: yellow;
+    
+        .form-search-component {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: blue;
+    
+            .searchedValue-Label {
+                display: none;
+            }
+        }
+    
+        .form-parameters-component {
+            background-color: orange;
+        }
+    
+    }
 
-        .searchedValue-Label {
-            display: none;
+    .now-playing-carousel-container {
+        max-height: 30vh;
+
+        img {
+            max-height: 30vh;
         }
     }
 
-    .form-parameters-component {
-        background-color: orange;
+    .upcoming-carousel-container {
+        max-height: 30vh;
+        background-color: green;
+
+        img {
+            max-height: 30vh;
+        }
     }
+
+    .favorites-carousel-container {
+        max-height: 30vh;
+        background-color: red;
+
+        img {
+            max-height: 30vh;
+        }
+    }
+
 }

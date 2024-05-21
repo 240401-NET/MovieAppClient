@@ -58,7 +58,7 @@ export const MovieSearch : React.FC = () => {
                 <div className="form-search-component">
                     <label htmlFor="searchedValue" className="searchedValue-Label"></label>
                     <input 
-                        id="searchedValue-input"
+                        id="searchedValue"
                         type="text"
                         defaultValue={searchedValue}
                         placeholder='Select an option below...'

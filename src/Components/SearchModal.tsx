@@ -12,13 +12,7 @@ interface SearchedProps {
 export const SearchModal : React.FC<SearchedProps> = ({modalOpen, searchedResults, setModalOpen}) => {
 
     const handleClose = () => {setModalOpen(false), setShow(false)};
-    const [show, setShow] = useState(modalOpen);
-    // const [renderedResults, setRenderedResults] = useState<ISearchedMovie[] | undefined>(undefined)
-
-    // useEffect(() => {
-    //     setRenderedResults(searchedResults)
-    // })
-    
+    const [show, setShow] = useState(modalOpen);    
 
     return (
         <Modal show={show} onHide={handleClose}>
