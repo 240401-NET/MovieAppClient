@@ -66,9 +66,9 @@ export const FavoritesCarousel : React.FC = ({}) => {
                     ))
                 )}
             </Carousel>
-                {modalOpen && (
+                {/* {modalOpen && (
                     <CarouselModal modalOpen={modalOpen} carouselResults={currentHighlightedMovie} setModalOpen={setModalOpen}></CarouselModal>
-                )}
+                )} */}
             </div>
         </>
     )
