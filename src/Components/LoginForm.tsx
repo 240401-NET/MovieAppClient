@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "../Pages/AuthenticationPage.css";
-import { UserLogin } from "../services/UserServices";
+import { useAuthentication } from "../contexts/AuthenticationContext";
 
 interface LoginFormState {
   username: string;
@@ -15,10 +15,12 @@ export const LoginForm: React.FC = () => {
     username: "",
     password: "",
   });
+  
+  const { loginUser } = useAuthentication();
 
   const handleLoginSubmit = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    UserLogin(state.username, state.password);
+    loginUser(state.username, state.password);
   };
 
   return (

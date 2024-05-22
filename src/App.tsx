@@ -9,11 +9,13 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { AuthenticationProvider } from "./contexts/AuthenticationContext";
 
 function App() {
   return (
     <div className="App">
       <Router>
+        <AuthenticationProvider>
         <Routes>
           <Route
             path="/login"
@@ -26,6 +28,7 @@ function App() {
           <Route path="/" element={<Navigate to="/signup" />} />
           <Route path="*" element={<LandingPage />} />
         </Routes>
+        </AuthenticationProvider>
       </Router>
     </div>
   );

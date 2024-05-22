@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginForm } from "../Components/LoginForm";
 import { SignUpForm } from "../Components/SignUpForm";
 import "./AuthenticationPage.css";
+import { useLocation } from "react-router";
 
 interface AuthenticationPageProps {
   initialMode: "login" | "signup";
@@ -16,11 +17,23 @@ export const AuthenticationPage: React.FC<AuthenticationPageProps> = ({
   initialMode,
 }) => {
   const [mode, setMode] = useState<"login" | "signup">(initialMode);
+  const location = useLocation();
+  console.log("location: ", typeof location)
 
+  useEffect(() => {
+    const path = location.pathname;
+    if (path.includes("login")) {
+      setMode("login");
+    } else if (path.includes("signup")) {
+      setMode("signup")
+    }
+  }, [location])
   /**
    * Toggles the mode between "login" and "signup".
    */
+  console.log("mode outside toggle: ", mode)
   const toggleMode = () => {
+    console.log("toggleMode", mode)
     setMode(mode === "login" ? "signup" : "login");
   };
 
