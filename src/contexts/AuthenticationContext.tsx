@@ -21,11 +21,13 @@ interface AuthenticationContextType {
   isLoggedIn: () => boolean;
 }
 
+type Props = { children: React.ReactNode };
+
 const AuthenticationContext = createContext<AuthenticationContextType>(
   {} as AuthenticationContextType
 );
 
-export const AuthenticationProvider = (children: React.ReactNode) => {
+export const AuthenticationProvider = ({ children }: Props) => {
   // call useNavigate from React-Router to allow navigation between pages
   const navigate = useNavigate();
 
