@@ -52,7 +52,7 @@ export const UpcomingCarousel : React.FC = ({}) => {
     return (
         <>
             <div className="upcoming-container">
-            <h1>Upcoming</h1>
+            <h6>Upcoming</h6>
             {/* map over each movie result and display them on carousel*/ }
             <Carousel fade className="upcoming-carousel-container">
                 {upcomingResults && (

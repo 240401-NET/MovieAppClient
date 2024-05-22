@@ -9,13 +9,9 @@ const LandingPageDashboard = () => {
         <>
             <div className="landingPage-container">  
                 <MovieSearch></MovieSearch>
-                <div className="carousels-container">
                     <NowPlayingCarousel></NowPlayingCarousel>
                     <UpcomingCarousel></UpcomingCarousel>
-                </div>
-                <div className="favorites-container">
                     <FavoritesCarousel></FavoritesCarousel>
-                </div>
             </div>
         </>
     )

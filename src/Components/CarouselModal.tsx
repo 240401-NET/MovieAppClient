@@ -1,3 +1,4 @@
+import "../Pages/LandingPage.css"
 import React, {useState} from 'react';
 import { ISearchedMovie } from './MovieSearch';
 import Button from 'react-bootstrap/Button';
@@ -23,21 +24,16 @@ export const CarouselModal = React.forwardRef (({modalOpen, carouselResults, set
     return (
         <Modal show={show} onHide={handleClose} ref={ref}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{carouselResults.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-            {carouselResults && (
-                <div>
-                    <li key={carouselResults.title}>
-                        <p>{carouselResults.title}</p>
-                        <p>{carouselResults.language}</p>
-                        <p>{carouselResults.genre}</p>
-                        <p>{carouselResults.released_year}</p>
-                    </li>
+        <Modal.Body className="modal-container">
+                <div className='carousel-modal'>
+                    <img src={carouselResults.img} className="carousel-modal-img" alt="" />
+                    <p>Synopsis: {carouselResults.language}</p>
+                    <p>Genres: {carouselResults.genre}</p>
+                    <p>Release Date:{carouselResults.released_year}</p>
                     <button onClick={(e) => handleAddFavorites(e)}>Favorite</button>
                 </div>
-                )
-            }
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

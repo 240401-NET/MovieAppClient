@@ -8,7 +8,8 @@ export interface ISearchedMovie{
     title: string,
     released_year: number,
     language: string,
-    genre: string
+    genre: string,
+    img?: string
 }
 
 const SearchedMovie : ISearchedMovie[] = [

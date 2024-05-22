@@ -25,11 +25,13 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  justify-content: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: #f9f7fe;
   color: #0000007e;
+  background-image: linear-gradient(rgba(224, 214, 214, 0.567), rgba(0, 0, 0, 0.5)), url(./assets/theater.jpg);
+  background-size: cover;
 }
 
 h1 {

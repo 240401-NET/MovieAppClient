@@ -53,8 +53,9 @@ export const FavoritesCarousel : React.FC = ({}) => {
 
     return (
         <>
-            <h1>Favorites</h1>
+
             <div className="favorites-container">
+            <h6>Favorites</h6>
             {/* map over each movie result and display them on carousel*/ }
             <Carousel fade className="favorites-carousel-container">
                 {favoritesResults && (
