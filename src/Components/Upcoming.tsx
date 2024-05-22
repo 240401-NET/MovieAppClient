@@ -2,7 +2,7 @@ import "../Pages/LandingPage.css";
 import {useState, useEffect} from 'react';
 import Carousel  from "react-bootstrap/Carousel";
 import { ISearchedMovie } from "./MovieSearch";
-import { SearchModal } from "./SearchModal";
+import { CarouselModal } from "./CarouselModal";
 
 const UpcomingMovies : ISearchedMovie[] = [
     {
@@ -15,26 +15,34 @@ const UpcomingMovies : ISearchedMovie[] = [
         title: "Fall Guy",
         released_year: 2024,
         language: "en-us",
-        genre: "action"
+        genre: "Comedy"
     },
     {
         title: "Maze Runner",
         released_year: 2024,
         language: "en-us",
-        genre: "action"
+        genre: "Psychological"
     },
     {
         title: "Temptation",
         released_year: 2024,
         language: "en-us",
-        genre: "action"
+        genre: "Drama"
     },
 ]
+
+const TemplateMovie: ISearchedMovie = {
+    title: "Template",
+    released_year: 1900,
+    language: "kor",
+    genre: "genre"
+}
 
 export const UpcomingCarousel : React.FC = ({}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [upcomingResults, setUpcomingResults] = useState<ISearchedMovie[]>([]);
+    const [currentHighlightedMovie, setCurrentHighlightedMovie] = useState<ISearchedMovie>(TemplateMovie);
 
     // implement call to backend that gets a list of all now playing movies and store it into a state variable.
     useEffect(() => {
@@ -50,14 +58,14 @@ export const UpcomingCarousel : React.FC = ({}) => {
                 {upcomingResults && (
                     upcomingResults.map((movie, index) => (
                         <Carousel.Item className="upcoming-carousel-items" key={index} >
-                            <p onClick={() => setModalOpen(true)}>{movie.title}</p>
+                            <p onClick={() => {setModalOpen(true), setCurrentHighlightedMovie(movie)}}>{movie.title}</p>
                         </Carousel.Item>
                     ))
                 )}
             </Carousel>
-            {modalOpen && (
-                <SearchModal modalOpen={modalOpen} searchedResults={upcomingResults} setModalOpen={setModalOpen}></SearchModal>
-            )}
+                {modalOpen && (
+                    <CarouselModal modalOpen={modalOpen} carouselResults={currentHighlightedMovie} setModalOpen={setModalOpen}></CarouselModal>
+                )}
             </div>
         </>
     )
