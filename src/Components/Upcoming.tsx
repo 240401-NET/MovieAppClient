@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import Carousel  from "react-bootstrap/Carousel";
 import { CarouselModal } from "./CarouselModal";
 import { FetchUpcomingMovies, ITMDBMovieDto, TemplateMovie, baseimagepath } from "../services/TMDBApiService";
+import Placeholder from "../assets/placeholderimage.png"
 
 export const UpcomingCarousel : React.FC = ({}) => {
 
@@ -46,8 +47,8 @@ export const UpcomingCarousel : React.FC = ({}) => {
                     upcomingResults.map((movie, index) => (
                         <Carousel.Item className="upcoming-carousel-items" key={index} >
                             <p>{movie.title}</p>
-                            <img src={`${baseimagepath + movie.poster_path}`} alt="" onClick={() => {setModalOpen(true), setCurrentHighlightedMovie(movie)}}/>
-                            <Carousel.Caption>{movie.title}</Carousel.Caption>
+                            <img src={movie.poster_path !== null ? `${baseimagepath + movie.poster_path}` : Placeholder} alt="" onClick={() => {setModalOpen(true), setCurrentHighlightedMovie(movie)}}/>
+                            {/* <Carousel.Caption>{movie.title}</Carousel.Caption> */}
                         </Carousel.Item>
                     ))
                 )}

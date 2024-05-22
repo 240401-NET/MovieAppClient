@@ -2,7 +2,7 @@ import "../Pages/LandingPage.css";
 import {useState, useEffect} from 'react';
 import Carousel  from "react-bootstrap/Carousel";
 import { ISearchedMovie } from "./MovieSearch";
-import { CarouselModal } from "./CarouselModal";
+// import { CarouselModal } from "./CarouselModal";
 
 const FavoritedMovies : ISearchedMovie[] = [
     {

@@ -1,5 +1,5 @@
 import "../Pages/LandingPage.css"
-import { FavoritesCarousel } from "./Favorites";
+// import { FavoritesCarousel } from "./Favorites";
 import { MovieSearch } from "./MovieSearch";
 import { NowPlayingCarousel } from "./NowPlaying";
 import { UpcomingCarousel } from "./Upcoming";
@@ -11,7 +11,7 @@ const LandingPageDashboard = () => {
                 <MovieSearch></MovieSearch>
                     <NowPlayingCarousel></NowPlayingCarousel>
                     <UpcomingCarousel></UpcomingCarousel>
-                    <FavoritesCarousel></FavoritesCarousel>
+                    {/* <FavoritesCarousel></FavoritesCarousel> */}
             </div>
         </>
     )
