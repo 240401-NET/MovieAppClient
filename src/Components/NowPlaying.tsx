@@ -39,35 +39,51 @@ const TemplateMovie: ISearchedMovie = {
     genre: "genre"
 }
 
-const addedMovie : ISearchedMovie = {
-    title: "Test",
-    released_year: 2024,
-    language: "en-us",
-    genre: "Drama"
-}
+const addedMovie : ISearchedMovie[] = [
+    {
+        title: "The Zugzwang Machine | A History of Lantern Control",
+        released_year: 2024,
+        language: "en-us",
+        genre: "Drama",
+        img: "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
+        description: "Follows the unlikely ascent of Magic the Gathering\u0027s most peculiar deck: Lantern Control. From a fleeting idea in a forum thread to winning the Pro Tour, Lantern Control challenged players\u0027 understanding of Magic and forever changed how they think about its core game systems."
+    },
+    {
+        title: "Burning Sun: Exposing the secret K-pop chat groups",
+        released_year: 2024,
+        language: "en-us",
+        genre: "Drama",
+        img: "https://image.tmdb.org/t/p/w500/1E5baAaEse26fej7uHcjOgEE2t2.jpg",
+        description: "A BBCEye investigation into three K-pop stars who were sharing evidence of sexual crimes in secret chat groups."
+    }
+]
 
 export const NowPlayingCarousel : React.FC = ({}) => {
 
     const [modalOpen, setModalOpen] = useState(false);
     const [nowPlayingResults, setNowPlayingResults] = useState<ISearchedMovie[]>([]);
     const [currentHighlightedMovie, setCurrentHighlightedMovie] = useState<ISearchedMovie>(TemplateMovie);
+    // keeps track of the current response page--sends api call to get next page of results
+    // const [currentReponsePage, setCurrentResponsePage] = useState<number>(1);
     // implement call to backend that gets a list of all now playing movies and store it into a state variable.
     useEffect(() => {
         setNowPlayingResults(NowPlayingMovies);
     } , [])
 
     // change to make subsequent api calls to get more pages of now playing movies 
-    const handleShowMoreMovies = (e: any, newMovie : ISearchedMovie) => {
+    const handleShowMoreMovies = (e: any, newMovies : ISearchedMovie[]) => {
         e.preventDefault();
-        const updatedMovies = [...nowPlayingResults, newMovie]
-        setNowPlayingResults(updatedMovies)
-        console.log(nowPlayingResults, updatedMovies);
+        setNowPlayingResults(prevItems => {
+            const updatedMovies = [...prevItems, ...newMovies];
+            console.log("Updated Movies in handler:", updatedMovies);
+            return updatedMovies;
+        });
     }
 
     return (    
         <>
         <div className="now-playing-container">
-            <h5>Now Playing</h5>
+            <h4>Now Playing</h4>
             {/* map over each movie result and display them on carousel*/ }
             <Carousel fade className="now-playing-carousel-container">
                 {nowPlayingResults && (

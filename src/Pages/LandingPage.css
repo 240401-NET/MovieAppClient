@@ -28,14 +28,28 @@
     .form-container{
         display: flex;
         flex-direction: column;
-        background-color: yellow;
         margin-bottom: 2vh;
+        color: whitesmoke;
     
         .form-search-component {
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            background-color: blue;
+            background-color: rgba(223, 111, 111, 0.34);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            padding-bottom: .5rem;
+            padding-top: .5rem;
+
+            .searchedValue-button{
+                background-color: rgba(223, 111, 111, 0.34);
+                border: none;
+            }
+
+            #searchedValue {
+                width: 70%;
+                color: whitesmoke;
+            }
     
             .searchedValue-Label {
                 display: none;
@@ -43,7 +57,16 @@
         }
     
         .form-parameters-component {
-            background-color: orange;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            background-color: rgba(223, 111, 111, 0.34);
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+
+            .parameter-radio {
+                margin-right: 5px;
+            }
         }
     
     }
@@ -54,12 +77,22 @@
             align-items: center;
             justify-content: center;
             margin-bottom: 2vh;
+            background-color: rgba(223, 111, 111, 0.34);   
+            border-radius: 1rem;
+
+            h4 {
+                color: whitesmoke;
+            }
 
             .now-playing-carousel-container {
                 display: flex;
                 flex-direction: column;
                 height: 25vh;
                 width: 100%;
+
+                p {
+                    color: whitesmoke;
+                }
                 
                 
                 .now-playing-carousel-items { 
@@ -79,13 +112,22 @@
             align-items: center;
             justify-content: center; 
             margin-bottom: 2vh;
+            background-color: rgba(223, 111, 111, 0.34);   
+            border-radius: 1rem;
+
+            h4 {
+                color: whitesmoke;
+            }
 
             .upcoming-carousel-container {
                 display: flex;
                 flex-direction: column;
                 height: 25vh;
                 width: 100%;
-                background-color: orchid;
+
+                p {
+                    color: whitesmoke;
+                }
         
                 .upcoming-carousel-items {
                     img {
@@ -102,13 +144,22 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        background-color: rgba(223, 111, 111, 0.34);   
+        border-radius: 1rem;
+
+        h4 {
+            color: whitesmoke;
+        }
 
         .favorites-carousel-container {
             display: flex;
             flex-direction: column;
             height: 25vh;
             width: 100%;
-            background-color: orchid;
+
+            p {
+                color: whitesmoke;
+            }
     
             .favorites-carousel-items {
                 img {
@@ -120,10 +171,14 @@
     }
 }
 
+.modal-component {
+    background-color: rgba(223, 111, 111, 0.34);
+}
 .carousel-modal {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column; 
+    
 
     .carousel-modal-img {
         width: 50%;

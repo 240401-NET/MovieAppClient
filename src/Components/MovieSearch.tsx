@@ -10,6 +10,7 @@ export interface ISearchedMovie{
     language: string,
     genre: string,
     img?: string
+    description?: string
 }
 
 const SearchedMovie : ISearchedMovie[] = [
