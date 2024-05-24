@@ -89,3 +89,83 @@ export const UserRegistration = (
       })
   );
 };
+
+export const AddMovieToFavorites = async (username: string, title: string, movieId: number, movieDescription: string, poster_path: string) => {
+  return await fetch(`${baseUrl}/User/addFavoriteMovie`, {
+      method: "POST",
+      mode: "cors",
+      // credentials: "include",
+      body: JSON.stringify({
+        username: username,
+        movieTitle: title,
+        movieId: movieId,
+        description: movieDescription,
+        posterPath: (poster_path !== null ? poster_path = poster_path : poster_path = "/assets/placeholderimage.png")
+      }),
+      headers: {
+          "Content-type": "application/json",
+      },
+      })
+      // return response body
+      .then((response) => {
+          if (response.ok) {
+          window.alert("Movie added to favorites!");
+          }
+      })
+      // catches any errors
+      .catch((error) => {
+          console.log(error);
+          throw error;
+      });
+  };
+
+export const SearchMovieByFavorites = async (username: string) => {
+  return await fetch(`${baseUrl}/User/${username}/favorites`, {
+      method: "GET",
+      mode: "cors",
+      // credentials: "include",
+      headers: {
+          "Content-type": "application/json",
+      },
+      })
+      // return response body
+      .then((response) => {
+          if (response.ok) {
+          return response.json();
+          }
+      })
+      // catches any errors
+      .catch((error) => {
+          console.log(error);
+          throw error;
+      });
+  };
+
+  export const DeleteMovieFromFavorites = async (username: string, title: string, movieId: number, movieDescription: string, poster_path: string) => {
+    return await fetch(`${baseUrl}/User/removeFavorite/`, {
+        method: "DELETE",
+        mode: "cors",
+        // credentials: "include",
+        body: JSON.stringify({
+          username: username,
+          movieTitle: title,
+          movieId: movieId,
+          description: movieDescription,
+          posterPath: (poster_path !== null ? poster_path = poster_path : poster_path = "/assets/placeholderimage.png")
+        }),
+        headers: {
+            "Content-type": "application/json",
+        },
+        })
+        // return response body
+        .then((response) => {
+            if (response.ok) {
+              window.alert("Movie deleted from favorites!");
+            }
+        })
+        // catches any errors
+        .catch((error) => {
+            console.log(error);
+            throw error;
+        });
+    };

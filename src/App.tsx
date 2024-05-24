@@ -26,7 +26,7 @@ function App() {
             element={<AuthenticationPage initialMode="signup" />}
           />
           <Route path="/" element={<Navigate to="/signup" />} />
-          <Route path="*" element={<LandingPage />} />
+          <Route path="/movielandingpage" element={<LandingPage />} />
         </Routes>
         </AuthenticationProvider>
       </Router>

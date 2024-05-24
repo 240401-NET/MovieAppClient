@@ -2,7 +2,6 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UserLogin,
-  UserLogout,
   UserRegistration,
 } from "../services/UserServices";
 
@@ -89,11 +88,9 @@ export const AuthenticationProvider = ({ children }: Props) => {
       })
       .catch((error) => console.error(error));
   };
+ 
+  const logoutUser = async() => {
 
-  const logoutUser = async () => {
-    await UserLogout()
-      .then((res) => {
-        if (res) {
           // remove items from local storage--once again remove or change once we know how identity was implemented
           localStorage.removeItem("user");
           localStorage.removeItem("token");
@@ -101,11 +98,8 @@ export const AuthenticationProvider = ({ children }: Props) => {
           setToken("");
 
           // navigate user to login page
-          navigate("/login");
+          await navigate("/login");
           window.alert("Logout successful");
-        }
-      })
-      .catch((error) => console.error(error));
   };
 
   // just checks if user is null then returns a boolean value associated with that check

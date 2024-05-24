@@ -1,8 +1,15 @@
+import LandingPageDashboard from "../Components/LandingPageDashboard";
+import "./LandingPage.css"
+
+
 const LandingPage = () => {
+
+
+
   return (
-    <div>
-      <h1>Landing Page</h1>
-    </div>
+    <>
+      <LandingPageDashboard></LandingPageDashboard>
+    </>
   );
 };
 export default LandingPage;

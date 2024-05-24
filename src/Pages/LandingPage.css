@@ -1,0 +1,170 @@
+.landingPage-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 1160px;
+    
+    .form-container{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 2vh;
+        color: whitesmoke;
+    
+        .form-search-component {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            background-color: rgba(223, 111, 111, 0.34);
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            padding-bottom: .5rem;
+            padding-top: .5rem;
+
+            .searchedValue-button{
+                background-color: rgba(223, 111, 111, 0.34);
+                border: none;
+            }
+
+            #searchedValue {
+                width: 50%;
+                color: whitesmoke;
+            }
+    
+            .searchedValue-Label {
+                display: none;
+            }
+        }
+    
+        .form-parameters-component {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            background-color: rgba(223, 111, 111, 0.34);
+            border-bottom-right-radius: 1rem;
+            border-bottom-left-radius: 1rem;
+
+            .parameter-radio {
+                margin-right: 5px;
+            }
+        }
+    
+    }
+        /* .now-playing-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2vh;
+            background-color: rgba(223, 111, 111, 0.34);   
+            border-radius: 1rem;
+
+            h4 {
+                color: whitesmoke;
+            } */
+
+            /* .now-playing-carousel-container {
+                display: flex;
+                flex-direction: column;
+                height: 40vh;
+                width: 100%;
+
+                p {
+                    color: whitesmoke;
+                }
+                
+                
+                .now-playing-carousel-items { 
+                    img {
+                        max-width: 80%;
+                        max-height: 90%;
+                    }
+                }
+
+            }
+        } */
+
+        .upcoming-container {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; 
+            margin-bottom: 2vh;
+            background-color: rgba(223, 111, 111, 0.34);   
+            border-radius: 1rem;
+
+            h4 {
+                color: whitesmoke;
+            }
+
+            .upcoming-carousel-container {
+                display: flex;
+                flex-direction: column;
+                height: 85vh;
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+
+                p {
+                    color: whitesmoke;
+                }
+        
+                .upcoming-carousel-items {
+                    img {
+                        height: 50%;
+                        width: 50%;
+                    }
+                }
+            }
+        }
+
+    .favorites-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(223, 111, 111, 0.34);   
+        border-radius: 1rem;
+
+        h4 {
+            color: whitesmoke;
+        }
+
+        .favorites-carousel-container {
+            display: flex;
+            flex-direction: column;
+            height: 25vh;
+            width: 100%;
+
+            p {
+                color: whitesmoke;
+            }
+    
+            .favorites-carousel-items {
+                img {
+                    max-width: 80%;
+                    max-height: 90%;
+                }
+            }
+        }
+    }
+}
+
+.modal-component {
+    background-color: rgba(223, 111, 111, 0.34);
+}
+.carousel-modal {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column; 
+    color: black;
+    
+
+    .carousel-modal-img {
+        width: 50%;
+        height: 50%;
+        align-self: center;
+    }
+}
