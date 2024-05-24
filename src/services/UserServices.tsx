@@ -91,6 +91,7 @@ export const UserRegistration = (
 };
 
 export const AddMovieToFavorites = async (username: string, title: string, movieId: number, movieDescription: string, poster_path: string) => {
+  console.log(poster_path);
   return await fetch(`${baseUrl}/User/addFavoriteMovie`, {
       method: "POST",
       mode: "cors",
@@ -100,7 +101,7 @@ export const AddMovieToFavorites = async (username: string, title: string, movie
         movieTitle: title,
         movieId: movieId,
         description: movieDescription,
-        posterPath: (poster_path !== null ? poster_path = poster_path : poster_path = "/assets/placeholderimage.png")
+        posterPath: poster_path
       }),
       headers: {
           "Content-type": "application/json",
