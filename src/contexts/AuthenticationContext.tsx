@@ -2,7 +2,6 @@ import React, { useState, useEffect, createContext, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   UserLogin,
-  UserLogout,
   UserRegistration,
 } from "../services/UserServices";
 
