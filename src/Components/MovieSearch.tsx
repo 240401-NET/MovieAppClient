@@ -1,62 +1,63 @@
 import "../Pages/LandingPage.css"
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { SearchModal } from "./SearchModal";
+import { ITMDBMovieDto, SearchMovieByGenre, SearchMovieByLanguage} from "../services/TMDBApiService";
+import { SearchMovieByFavorites } from "../services/UserServices";
 
-const searchParameters : string [] = ["genre", "language", "movie title", "favorites"]
-
-export interface ISearchedMovie{
-    title: string,
-    released_year: number,
-    language: string,
-    genre: string,
-    img?: string
-    description?: string
-}
-
-const SearchedMovie : ISearchedMovie[] = [
-    {
-        title: "Kingdom of the Planet of the Apes",
-        released_year: 2024,
-        language: "en-us",
-        genre: "action"
-    },
-    {
-        title: "Kingdom of the Planet of the Apes",
-        released_year: 2024,
-        language: "en-us",
-        genre: "action"
-    },
-    {
-        title: "Kingdom of the Planet of the Apes",
-        released_year: 2024,
-        language: "en-us",
-        genre: "action"
-    },
-    {
-        title: "Kingdom of the Planet of the Apes",
-        released_year: 2024,
-        language: "en-us",
-        genre: "action"
-    },
-]
+const searchParameters : string [] = ["genre", "language", "movie title"]
 
 export const MovieSearch : React.FC = () => {
 
     const [searchedValue, setSearchedValue] = useState("");
-    const [searchedParameter, setSearchedParameter] = useState("genre");
+    const [searchedParameter, setSearchedParameter] = useState<string>("genre");
     const [modalOpen, setModalOpen] = useState(false);
-    const [searchedResults, setSearchedResults] = useState<ISearchedMovie[]>([]);
+    const [searchedResults, setSearchedResults] = useState<ITMDBMovieDto[]>([]);
+    const [currentReponsePage, setCurrentResponsePage] = useState<number>(1);
+    const [currentlyLookingAtFavorites, setCurrentlyLookingAtFavorites] = useState<boolean>(false)
+    
+    const [username, setUserName] = useState("");
+
+    useEffect(() => {
+      const user = localStorage.getItem("user");
+      setUserName(user!);
+    }, [])
   
-    const handleMovieSearch = (e : React.FormEvent<HTMLFormElement>, searchedParameter : string, searchedValue : string) => {
+    const handleMovieSearch = async (e : React.FormEvent<HTMLFormElement>,  searchedValue: string, searchedParameter : string) => {
       e.preventDefault();
-      console.log(searchedParameter, searchedValue)
   
-      // implement api call for search once we start connecting with backend infrastructure
+      if (searchedParameter == "genre") {
+        e.preventDefault();
+        var results = await SearchMovieByGenre(currentReponsePage, searchedValue);
+        handleSetSearchResults(results);  
+      }
+
+      if (searchedParameter == "language") {
+        e.preventDefault();
+        var results = await SearchMovieByLanguage(currentReponsePage, searchedValue);
+        handleSetSearchResults(results);  
+      }
+
+      if (searchedParameter == "movie title") {
+        e.preventDefault();
+        window.alert("not implemented")
+      }
     }
 
+    const ShowFavorites = async(e : any) => {
+        e.preventDefault();
+        var results = await SearchMovieByFavorites(username);
+        setCurrentlyLookingAtFavorites(true)
+        handleSetSearchResults(results); 
+    }
+
+    const handleSetSearchResults = (result_set :ITMDBMovieDto[]) => {
+        setSearchedResults(result_set);
+        setModalOpen(true);
+    }
+    
     return (
         <>
-            <form onSubmit={(e) => {handleMovieSearch(e, searchedValue, searchedParameter), setModalOpen(true), setSearchedResults(SearchedMovie)}} className="form-container">
+            <form onSubmit={(e) => handleMovieSearch(e, searchedValue, searchedParameter)} className="form-container">
                 <div className="form-search-component">
                     <label htmlFor="searchedValue" className="searchedValue-Label"></label>
                     <input 
@@ -67,6 +68,7 @@ export const MovieSearch : React.FC = () => {
                         onChange={(e) => setSearchedValue(e.target.value)}
                     />
                     <button className="searchedValue-button btn btn-primary w-20" type="submit">Search</button>
+                    <button className="searchedValue-button btn btn-primary w-20" onClick={(e) => ShowFavorites(e)}>Favorites</button>
                 </div>
                 <div className="form-parameters-component">
                     {searchParameters.map((parameter, index) => (
@@ -86,7 +88,7 @@ export const MovieSearch : React.FC = () => {
                 </div>
             </form>
             {modalOpen && (
-                <SearchModal modalOpen={modalOpen} searchedResults={searchedResults} setModalOpen={setModalOpen}></SearchModal>
+                <SearchModal modalOpen={modalOpen} searchedResults={searchedResults} setModalOpen={setModalOpen} setCurrentlyLookingAtFavorites={setCurrentlyLookingAtFavorites} currentlyLookingAtFavorites={currentlyLookingAtFavorites}></SearchModal>
             )}
         </>
     )

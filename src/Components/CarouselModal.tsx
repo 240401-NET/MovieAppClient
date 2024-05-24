@@ -1,8 +1,9 @@
 import "../Pages/LandingPage.css"
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { ITMDBMovieDto, baseimagepath } from "../services/TMDBApiService";
 import Placeholder from "../assets/placeholderimage.png";
+import { AddMovieToFavorites } from "../services/UserServices";
 
 interface SearchedProps {
     modalOpen: boolean
@@ -14,10 +15,17 @@ export const CarouselModal = React.forwardRef (({modalOpen, carouselResults, set
 
     const handleClose = () => {setModalOpen(false), setShow(false)};
     const [show, setShow] = useState(modalOpen); 
+    const [username, setUserName] = useState("");
 
-    const handleAddFavorites = (e: any) => {
+    useEffect(() => {
+      const user = localStorage.getItem("user");
+      setUserName(user!);
+    }, [])
+    
+    const handleAddFavorites = async (e: any, user : string, title: string, movieId: number, description: string, poster_path: string) => {
         e.preventDefault();
-        console.log("favorited not implemented");
+        poster_path !== null ? poster_path = poster_path : poster_path = "../assets/placeholderimage.jpg";
+        await AddMovieToFavorites(user, title, movieId, description, poster_path);
     }
   
 
@@ -28,12 +36,10 @@ export const CarouselModal = React.forwardRef (({modalOpen, carouselResults, set
         </Modal.Header>
         <Modal.Body className="modal-container">
                 <div className='carousel-modal'>
-                    <img src={carouselResults.poster_path !== null ? `${baseimagepath + carouselResults.poster_path}` : Placeholder} className="carousel-modal-img" alt="" />
-                    <p>Language: {carouselResults.original_language}</p>
-                    <p>Genres: {carouselResults.genre_ids}</p>
-                    <p>Release Date: {carouselResults.release_date}</p>
-                    <p>Synopsis: {carouselResults.overview}</p>
-                    <button onClick={(e) => handleAddFavorites(e)}>Favorite</button>
+                    <img src={carouselResults.posterPath !== null ? `${baseimagepath + carouselResults.posterPath}` : Placeholder} className="carousel-modal-img" alt="" />
+                    <br />
+                    <p>Synopsis: {carouselResults.movieDescription}</p>
+                    <button onClick={(e) => handleAddFavorites(e, username, carouselResults.title, carouselResults.movieId, carouselResults.movieDescription, carouselResults.posterPath)}>Favorite</button>
                 </div>
         </Modal.Body>
         {/* <Modal.Footer>

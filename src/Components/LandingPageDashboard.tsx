@@ -9,7 +9,7 @@ const LandingPageDashboard = () => {
         <>
             <div className="landingPage-container">  
                 <MovieSearch></MovieSearch>
-                    <NowPlayingCarousel></NowPlayingCarousel>
+                    {/* <NowPlayingCarousel></NowPlayingCarousel> */}
                     <UpcomingCarousel></UpcomingCarousel>
                     {/* <FavoritesCarousel></FavoritesCarousel> */}
             </div>

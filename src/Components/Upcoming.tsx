@@ -1,5 +1,5 @@
 import "../Pages/LandingPage.css";
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import Carousel  from "react-bootstrap/Carousel";
 import { CarouselModal } from "./CarouselModal";
 import { FetchUpcomingMovies, ITMDBMovieDto, TemplateMovie, baseimagepath } from "../services/TMDBApiService";
@@ -12,31 +12,33 @@ export const UpcomingCarousel : React.FC = ({}) => {
     const [currentHighlightedMovie, setCurrentHighlightedMovie] = useState<ITMDBMovieDto>(TemplateMovie);
     const [currentReponsePage, setCurrentResponsePage] = useState<number>(1);
     const [currentPageResponse, setCurrenPageResponse] = useState<ITMDBMovieDto[]>([])
+    const [firstLoad, setFirstLoad] = useState(true);
     // implement call to backend that gets a list of all now playing movies and store it into a state variable.
-    useEffect(() => {
-        try{
-            GetUpcoming(currentReponsePage);
-            setUpcomingResults(currentPageResponse);
+
+    useEffect (()=> {
+        if(firstLoad) {
+            GetUpcoming(currentReponsePage)
         }
-        catch (error){
-            console.log(error)
+        setFirstLoad(false);
+        if(JSON.stringify(currentPageResponse) !== JSON.stringify(upcomingResults))
+            {
+            setUpcomingResults(prevItems => {
+            const updatedMovies = [...prevItems, ...currentPageResponse];
+            return updatedMovies;
+            })
         }
-    } , [])
+    }, [currentPageResponse])
+
+    const ShowMoreMovies = () => {
+        GetUpcoming(currentReponsePage);
+    }
 
     const GetUpcoming = async (page : number) => {
         const responseData = await FetchUpcomingMovies(page);
         setCurrenPageResponse(responseData);
+        setCurrentResponsePage(() => currentReponsePage + 1)
     }
 
-    const handleShowMoreMovies = async (e: any, newMovies : ITMDBMovieDto[], page: number) => {
-        e.preventDefault();
-        GetUpcoming(page)
-        setUpcomingResults(prevItems => {
-            const updatedMovies = [...prevItems, ...newMovies];
-            return updatedMovies;
-        });
-    }
-    
     return (
         <>
             <div className="upcoming-container">
@@ -44,10 +46,10 @@ export const UpcomingCarousel : React.FC = ({}) => {
             {/* map over each movie result and display them on carousel*/ }
             <Carousel fade className="upcoming-carousel-container">
                 {upcomingResults && (
-                    upcomingResults.map((movie, index) => (
+                    upcomingResults!.map((movie, index) => (
                         <Carousel.Item className="upcoming-carousel-items" key={index} >
                             <p>{movie.title}</p>
-                            <img src={movie.poster_path !== null ? `${baseimagepath + movie.poster_path}` : Placeholder} alt="" onClick={() => {setModalOpen(true), setCurrentHighlightedMovie(movie)}}/>
+                            <img src={movie.posterPath !== null ? `${baseimagepath + movie.posterPath}` : Placeholder} alt="" onClick={() => {setModalOpen(true), setCurrentHighlightedMovie(movie)}}/>
                             {/* <Carousel.Caption>{movie.title}</Carousel.Caption> */}
                         </Carousel.Item>
                     ))
@@ -56,7 +58,7 @@ export const UpcomingCarousel : React.FC = ({}) => {
                     <CarouselModal modalOpen={modalOpen} carouselResults={currentHighlightedMovie} setModalOpen={setModalOpen}></CarouselModal>
                 )}
                 <Carousel.Item>
-                <button onClick={(e) => {{setCurrentResponsePage(currentReponsePage + 1), handleShowMoreMovies(e, currentPageResponse, currentReponsePage)}}}>Show more ...</button>
+                <button onClick={() => ShowMoreMovies()}>Show more ...</button>
                 </Carousel.Item>
             </Carousel>
 
