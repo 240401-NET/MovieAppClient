@@ -16,6 +16,7 @@ export const CarouselModal = React.forwardRef (({modalOpen, carouselResults, set
     const handleClose = () => {setModalOpen(false), setShow(false)};
     const [show, setShow] = useState(modalOpen); 
     const [username, setUserName] = useState("");
+    const [placeholderPoster] = useState("../assets/placeholderimage.png")
 
     useEffect(() => {
       const user = localStorage.getItem("user");
@@ -24,8 +25,14 @@ export const CarouselModal = React.forwardRef (({modalOpen, carouselResults, set
     
     const handleAddFavorites = async (e: any, user : string, title: string, movieId: number, description: string, poster_path: string) => {
         e.preventDefault();
-        poster_path !== null ? poster_path = poster_path : poster_path = "../assets/placeholderimage.jpg";
-        await AddMovieToFavorites(user, title, movieId, description, poster_path);
+        console.log(poster_path === null);
+        if(poster_path === null) {
+          console.log("we got here");
+          await AddMovieToFavorites(user, title, movieId, description, placeholderPoster);
+        }
+        else{
+          await AddMovieToFavorites(user, title, movieId, description, poster_path);
+        }
     }
   
 
