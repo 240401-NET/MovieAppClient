@@ -3,6 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { SearchModal } from "./SearchModal";
 import { ITMDBMovieDto, SearchMovieByGenre, SearchMovieByLanguage} from "../services/TMDBApiService";
 import { SearchMovieByFavorites } from "../services/UserServices";
+import { useAuthentication } from "../contexts/AuthenticationContext";
 
 const searchParameters : string [] = ["genre", "language", "movie title"]
 
@@ -12,10 +13,11 @@ export const MovieSearch : React.FC = () => {
     const [searchedParameter, setSearchedParameter] = useState<string>("genre");
     const [modalOpen, setModalOpen] = useState(false);
     const [searchedResults, setSearchedResults] = useState<ITMDBMovieDto[]>([]);
-    const [currentReponsePage, setCurrentResponsePage] = useState<number>(1);
-    const [currentlyLookingAtFavorites, setCurrentlyLookingAtFavorites] = useState<boolean>(false)
-    
+    const [currentReponsePage] = useState<number>(1);
+    const [currentlyLookingAtFavorites, setCurrentlyLookingAtFavorites] = useState<boolean>(false);
     const [username, setUserName] = useState("");
+
+    const { logoutUser } = useAuthentication();
 
     useEffect(() => {
       const user = localStorage.getItem("user");
@@ -69,6 +71,7 @@ export const MovieSearch : React.FC = () => {
                     />
                     <button className="searchedValue-button btn btn-primary w-20" type="submit">Search</button>
                     <button className="searchedValue-button btn btn-primary w-20" onClick={(e) => ShowFavorites(e)}>Favorites</button>
+                    <button className="searchedValue-button btn btn-primary w-20" onClick={logoutUser}>Logout</button>
                 </div>
                 <div className="form-parameters-component">
                     {searchParameters.map((parameter, index) => (
